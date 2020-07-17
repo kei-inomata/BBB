@@ -10,7 +10,7 @@ if(!empty($_POST)){
 
 	if(empty($error)){
 		$image = date('YmdHis') . $_FILES['image']['name'];
-		move_upload_file($_FILES['image']['tmp_name'],'../member_picture/' . $image);
+		move_uploaded_file($_FILES['image']['tmp_name'] . '../member_picture/' . $image);
 		$_SESSION['join']=$_POST;
 		$_SESSION['join']['image'] = $image;
 		header('Location: check.php');
@@ -48,7 +48,7 @@ if(!empty($_POST)){
 		<dt>メールアドレス<span class="required">必須</span></dt>
 		<dd><input type="text" name="email" size="35" maxlength="255" />
 		
-		<?php if($error['email'] == 'duplicate'); ?>
+		<?php if($error['email'] == 'duplicate'): ?>
 		<p class="error">*指定されたメールアドレスは既に登録されています*</p>
 		<?php endif; ?>
 		</dd>
